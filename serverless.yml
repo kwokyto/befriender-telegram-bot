@@ -1,0 +1,22 @@
+service: befriender-bot
+
+provider:
+  name: aws
+  runtime: python3.6
+  profile:
+  environment:
+    TELEGRAM_TOKEN: ${file(./serverless.env.yml):TELEGRAM_TOKEN, '949437748:AAGLLVzxYH2SYAMt_HM2KgKSTIBaAQE_dEM'}
+
+functions:
+  webhook:
+    handler: handler.webhook
+    events:
+      - http: POST /
+
+  set_webhook:
+    handler: handler.set_webhook
+    events:
+      - http: POST /set_webhook
+
+plugins:
+  - serverless-python-requirements
