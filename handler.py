@@ -45,7 +45,7 @@ def webhook(event, context):
     """
 
     bot = configure_telegram()
-    logger.info('Event: {}'.format(event))
+    ##logger.info('Event: {}'.format(event)) ## for privacy issues, this is commented out
 
     if event.get('httpMethod') == 'POST' and event.get('body'): 
         logger.info('Message received')
@@ -58,7 +58,21 @@ def webhook(event, context):
             chat_id = update.edited_message.chat.id
             text = update.edited_message.text
 
-        #bot.sendMessage(chat_id=chat_id, text="Bot upgrade in progess...")
+        debug = False
+        #debug = debugging_mode(chat_id, text) # DEBUGGING MODE UNCOMMENT TO ENABLE DEBUGGING
+        flush = False # Change to True to flush all messages
+        if debug:
+            if debug is True: #is admin
+                if flush:
+                    lst = [{"message": "Messages flushed", "receiver_id": chat_id}]
+                else:
+                    lst = get_response(text, chat_id)
+                    lst = lst[0]
+                    lst[0]["receiver_id"] = chat_id # return response to tester
+            else:
+                lst = debug # send debugging message
+        else:
+            lst = get_response(text, chat_id) # not debugging
 
         lst = get_response(text, chat_id)
         for dic in lst:
@@ -100,7 +114,7 @@ def get_response(text, chat_id):
     already_registered_message = \
         "You are already registered!"
     to_register_message = \
-        "To register, please use the following format.\n/register <matric number> <password>\n./register AxxxxxxxA pAssw0rdH3r3"
+        "To register, please use the following format.\n/register <NUSNET ID> <password>\n/register E1234567 pAssw0rdH3r3"
     registration_success_message = \
         "Registration success! Your username is "
     registration_failed_message = \
@@ -131,6 +145,10 @@ def get_response(text, chat_id):
         "Invalid command."
     non_text_message = \
         "Non-text detected. Sorry, we still do not support non-text messages."
+    delete_success_message = \
+        "User deleted successfully"
+    delete_error_message = \
+        "Error in deleting user, please contact admin."
 
     # Setting main objects
     first_response = {"message": unregistered_message, "receiver_id": chat_id}
@@ -169,8 +187,8 @@ def get_response(text, chat_id):
             return responses_list
 
         # if user is not registered
-        matric_number = text[10:19]
-        hash = text[20:]
+        matric_number = text[10:18]
+        hash = text[19:]
 
         # if password is wrong
         # use https://www.md5hashgenerator.com/
@@ -233,13 +251,22 @@ def get_response(text, chat_id):
         return responses_list # COMPLETED AND WORKS
 
     if text[:7] == "/delete":
-        matric_number = text[8:17]
-        password = text[18:]
+        matric_number = text[8:16]
+        password = text[17:]
         if delete_user(matric_number, password):
-            first_response["message"] = "User deleted successfully."
+            first_response["message"] = delete_success_message
         else:
-            first_response["message"] = "Deletion failed."
+            first_response["message"] = delete_error_message
         return responses_list # COMPLETED AND WORKS
+
+    if text[:6] == "/allok":
+        password = text[7:]
+        allok = all_ok(password)
+        if allok == False:
+            first_response["message"] = wrong_password_message
+        else:
+            responses_list = allok
+        return responses_list
 
     if text[0] == "/":
         first_response["message"] = invalid_command_message

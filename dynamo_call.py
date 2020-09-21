@@ -59,11 +59,11 @@ def add_id(chat_id, matric_number):
                      "ostrich", "otter", "owl", "ox", "parrot", "peacock", "pelican", "penguin", "pigeon", "platypus", \
                      "porcupine", "possum", "prayingmantis", "puffin", "pygmy", "python", "quail", "rabbit", "raccoon", "rat", \
                      "rattlesnake", "raven", "reindeer", "rhino", "roadrunner", "robin", "salmon", "seal", "shark", "sheep", \
-                     "skunk", "sloth", "snake", "sparrow", "spider", "squirrel", "starfish", "stork", "swan", "tarantula", \
+                     "skunk", "sloth", "sparrow", "spider", "squirrel", "starfish", "stork", "swan", "tarantula", \
                      "tiger", "tortoise", "toucan", "turkey", "turtle", "viper", "vulture", "wallaby", "whale", "wolf", \
                      "wombat", "woodpecker", "yak", "zebra"]
     
-    username = "usp" + username_list[random.randint(0,144)]
+    username = "usp" + username_list[random.randint(0,143)]
     partner_id = 0
     blacklist = 0
     hasher = hashlib.sha256()
@@ -280,7 +280,7 @@ def is_blacklisted(chat_id):
         return True # COMPLETED AND WORKS
 
 def delete_user(matric_number, password):
-    # delete user entry
+    # delete user entry using NUSNET ID
     if password != "IAMTHELOVEUSPADMIN":
         return False
 
@@ -307,3 +307,53 @@ def delete_user(matric_number, password):
         logger.info("ERROR --> " + str(e))
         logger.info("User item not deleted")
         return False # COMPLETED AND WORKS
+
+def debugging_mode(chat_id, text):
+    ADMIN_ID = 197107238 # change to current tester chat_id
+    debug_message = "The bot is currently under maintenance. We will inform you when the bot is back up. Thank you for your patience."
+    template = {"message": "", "receiver_id": ""}
+    responses_list = []
+
+    if chat_id != ADMIN_ID: # if someone send message during debugging
+        template["message"] = debug_message
+        template["receiver_id"] = chat_id
+        responses_list.append(template)
+        return responses_list
+
+    if text == "/broadcast_debug": # inform everyone that debugging has started
+        response = table.scan(
+            FilterExpression = ~ Attr("username").eq("")
+        )
+        items = response["Items"]
+        logger.info("Items is: " + str(items))
+
+        template["message"] = "uspadmin:\n" + debug_message
+        for user in items:
+            response = template.copy()
+            response["receiver_id"] = str(user["chat_id"])
+            responses_list.append(response)
+        logger.info("Broadcast message sent")
+        return responses_list
+
+    return True # allow only tester to continue testing code
+
+def all_ok(password):
+    if password != "IAMTHELOVEUSPADMIN":
+        return False
+
+    all_ok_message = "uspadmin:\nThe bot is back in business! Thank you for your patience."
+    template = {"message": all_ok_message, "receiver_id": ""}
+    responses_list = []
+
+    response = table.scan(
+        FilterExpression = ~ Attr("username").eq("")
+    )
+    items = response["Items"]
+    logger.info("Items is: " + str(items))
+
+    for user in items:
+        response = template.copy()
+        response["receiver_id"] = str(user["chat_id"])
+        responses_list.append(response)
+    logger.info("Broadcast message sent")
+    return responses_list
