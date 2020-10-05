@@ -19,6 +19,9 @@ Below are a list of available commands for users that can be used in the Befrien
 ### `/start`
 Returns a general welcome message.
 
+### `/about`
+Returns a bot description, along with the sign up link, FAQ link, and admins’ Telegram handles.
+
 ### `/register <NUSNET ID> <password>`
 Registers the student into the Befriender system.
 Non-registered students will not be able to use the features of the bot.

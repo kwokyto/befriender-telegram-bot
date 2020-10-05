@@ -149,6 +149,13 @@ def get_response(text, chat_id):
         "User deleted successfully"
     delete_error_message = \
         "Error in deleting user, please contact admin."
+    about_message = \
+        "Befriender gives a safe space for USP students to find new friends within the USP space while anonymous.\n\n\
+Sign up: tinyurl.com/loveuspbotsignup \n\
+FAQ:  tinyurl.com/loveuspbotfaq \n\n\
+If there are any queries, feel free to contact us on Telegram!\n\
+For administrative concerns: @quan_shhhh (Quan Sheng), @yeeysics (Yee Ling)\n\
+For technical concerns: @kwokyto (Ryan)"
 
     # Setting main objects
     first_response = {"message": unregistered_message, "receiver_id": chat_id}
@@ -173,6 +180,10 @@ def get_response(text, chat_id):
     # Command Handlers
     if text == "/start":
         first_response["message"] = start_message
+        return responses_list # COMPLETED AND WORKS
+
+    if text == "/about":
+        first_response["message"] = about_message
         return responses_list # COMPLETED AND WORKS
 
     if text[:9] == "/register":

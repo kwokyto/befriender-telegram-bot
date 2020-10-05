@@ -169,7 +169,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/befriender-bot/dev/1600670977530-2020-09-21T06:49:37.530Z/befriender-bot.zip"
+                "S3Key": "serverless/befriender-bot/dev/1601831847661-2020-10-04T17:17:27.661Z/befriender-bot.zip"
               },
               "FunctionName": "befriender-bot-dev-webhook",
               "Handler": "handler.webhook",
@@ -192,14 +192,14 @@
               "WebhookLogGroup"
             ]
           },
-          "WebhookLambdaVersionOljuWP18PBubt7FU5koeHy3wQiggw0pmyCMwmwDoE": {
+          "WebhookLambdaVersionEkml9AA7R94RnmtP5MBwbAaAdO6xhFA52QK4xwIHzl0": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "WebhookLambdaFunction"
               },
-              "CodeSha256": "O0HPPDGL75oAM2vbUZxVMbqCsRzWRPitV84erfKIerk="
+              "CodeSha256": "NOHU+vV1uD3SsweLKsPf4iyNb9AG3E8crNu2SpSZIqI="
             }
           },
           "SetUnderscorewebhookLambdaFunction": {
@@ -209,7 +209,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/befriender-bot/dev/1600670977530-2020-09-21T06:49:37.530Z/befriender-bot.zip"
+                "S3Key": "serverless/befriender-bot/dev/1601831847661-2020-10-04T17:17:27.661Z/befriender-bot.zip"
               },
               "FunctionName": "befriender-bot-dev-set_webhook",
               "Handler": "handler.set_webhook",
@@ -232,14 +232,14 @@
               "SetUnderscorewebhookLogGroup"
             ]
           },
-          "SetUnderscorewebhookLambdaVersionCKdN6mezlxUihhBX6q5mdXYajvpKRN8lcRYPJ3qhw0": {
+          "SetUnderscorewebhookLambdaVersion2o2HiChf7ocH8f6cCY55haV7xmkdExUuhCDdbEHI": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "SetUnderscorewebhookLambdaFunction"
               },
-              "CodeSha256": "O0HPPDGL75oAM2vbUZxVMbqCsRzWRPitV84erfKIerk="
+              "CodeSha256": "NOHU+vV1uD3SsweLKsPf4iyNb9AG3E8crNu2SpSZIqI="
             }
           },
           "ApiGatewayRestApi": {
@@ -358,7 +358,7 @@
               "MethodResponses": []
             }
           },
-          "ApiGatewayDeployment1600670965064": {
+          "ApiGatewayDeployment1601831834878": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -455,13 +455,13 @@
           "WebhookLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "WebhookLambdaVersionOljuWP18PBubt7FU5koeHy3wQiggw0pmyCMwmwDoE"
+              "Ref": "WebhookLambdaVersionEkml9AA7R94RnmtP5MBwbAaAdO6xhFA52QK4xwIHzl0"
             }
           },
           "SetUnderscorewebhookLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "SetUnderscorewebhookLambdaVersionCKdN6mezlxUihhBX6q5mdXYajvpKRN8lcRYPJ3qhw0"
+              "Ref": "SetUnderscorewebhookLambdaVersion2o2HiChf7ocH8f6cCY55haV7xmkdExUuhCDdbEHI"
             }
           },
           "ServiceEndpoint": {
@@ -576,7 +576,7 @@
         "timeout": 6,
         "runtime": "python3.6",
         "vpc": {},
-        "versionLogicalId": "WebhookLambdaVersionOljuWP18PBubt7FU5koeHy3wQiggw0pmyCMwmwDoE"
+        "versionLogicalId": "WebhookLambdaVersionEkml9AA7R94RnmtP5MBwbAaAdO6xhFA52QK4xwIHzl0"
       },
       "set_webhook": {
         "handler": "handler.set_webhook",
@@ -591,7 +591,7 @@
         "timeout": 6,
         "runtime": "python3.6",
         "vpc": {},
-        "versionLogicalId": "SetUnderscorewebhookLambdaVersionCKdN6mezlxUihhBX6q5mdXYajvpKRN8lcRYPJ3qhw0"
+        "versionLogicalId": "SetUnderscorewebhookLambdaVersion2o2HiChf7ocH8f6cCY55haV7xmkdExUuhCDdbEHI"
       }
     },
     "configValidationMode": "warn",
@@ -618,7 +618,7 @@
     "artifact": "C:\\Users\\kwoky\\Documents\\GitHub\\befriender-telegram-bot\\.serverless\\befriender-bot.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/befriender-bot/dev/1600670977530-2020-09-21T06:49:37.530Z",
+    "artifactDirectoryName": "serverless/befriender-bot/dev/1601831847661-2020-10-04T17:17:27.661Z",
     "artifact": "befriender-bot.zip"
   }
 }
