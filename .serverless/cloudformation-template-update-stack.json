@@ -152,7 +152,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/befriender-bot/dev/1601961194279-2020-10-06T05:13:14.279Z/befriender-bot.zip"
+          "S3Key": "serverless/befriender-bot/dev/1601979608005-2020-10-06T10:20:08.005Z/befriender-bot.zip"
         },
         "FunctionName": "befriender-bot-dev-webhook",
         "Handler": "handler.webhook",
@@ -175,14 +175,14 @@
         "WebhookLogGroup"
       ]
     },
-    "WebhookLambdaVersionsdOR5DbryRXbomV4xDMJ3e8OVHdCU8ufKjZTtsEqIE": {
+    "WebhookLambdaVersiondSd3RNCcInueKhpWZKdRLHs62uCUslU5CdptExXjU": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "WebhookLambdaFunction"
         },
-        "CodeSha256": "uSqbRBKsvpZY9ht0MUBUXQwZkyGl/3vW+smHXBpJMwY="
+        "CodeSha256": "ODo2jXLUkdoZksOY9uA7NCqPzOeUpt5VfnDmn8pXdbc="
       }
     },
     "SetUnderscorewebhookLambdaFunction": {
@@ -192,7 +192,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/befriender-bot/dev/1601961194279-2020-10-06T05:13:14.279Z/befriender-bot.zip"
+          "S3Key": "serverless/befriender-bot/dev/1601979608005-2020-10-06T10:20:08.005Z/befriender-bot.zip"
         },
         "FunctionName": "befriender-bot-dev-set_webhook",
         "Handler": "handler.set_webhook",
@@ -215,14 +215,14 @@
         "SetUnderscorewebhookLogGroup"
       ]
     },
-    "SetUnderscorewebhookLambdaVersionvdM6KZ63ZhVUMwlp1O4xhY0DnUYeig0qmNIyCgsnBtQ": {
+    "SetUnderscorewebhookLambdaVersionlEpv6g1ZzpMjOObe5LjfpgyHjFTJhkH0n1XxVqSyv2w": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "SetUnderscorewebhookLambdaFunction"
         },
-        "CodeSha256": "uSqbRBKsvpZY9ht0MUBUXQwZkyGl/3vW+smHXBpJMwY="
+        "CodeSha256": "ODo2jXLUkdoZksOY9uA7NCqPzOeUpt5VfnDmn8pXdbc="
       }
     },
     "ApiGatewayRestApi": {
@@ -341,7 +341,7 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1601961189942": {
+    "ApiGatewayDeployment1601979604137": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -438,13 +438,13 @@
     "WebhookLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "WebhookLambdaVersionsdOR5DbryRXbomV4xDMJ3e8OVHdCU8ufKjZTtsEqIE"
+        "Ref": "WebhookLambdaVersiondSd3RNCcInueKhpWZKdRLHs62uCUslU5CdptExXjU"
       }
     },
     "SetUnderscorewebhookLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "SetUnderscorewebhookLambdaVersionvdM6KZ63ZhVUMwlp1O4xhY0DnUYeig0qmNIyCgsnBtQ"
+        "Ref": "SetUnderscorewebhookLambdaVersionlEpv6g1ZzpMjOObe5LjfpgyHjFTJhkH0n1XxVqSyv2w"
       }
     },
     "ServiceEndpoint": {

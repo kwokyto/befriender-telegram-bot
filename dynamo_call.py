@@ -40,7 +40,6 @@ def is_registered(chat_id):
         return False # COMPLETED AND WORKS
 
 def check_password(matric_number, hash):
-    logger.info(str(chat_id) + " entered check_password")
     string_to_hash = matric_number
     password = hashlib.md5(string_to_hash.encode()).hexdigest()
     return hash == password # COMPLETED AND WORKS
