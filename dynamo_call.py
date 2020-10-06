@@ -22,6 +22,7 @@ table = client.Table(TableName)
 
 def is_registered(chat_id):
     # check if chat_id exists in dynamo
+    logger.info(str(chat_id) + " entered is_registered")
     hasher = hashlib.sha256()
     string_to_hash = str(chat_id)
     hasher.update(string_to_hash.encode('utf-8'))
@@ -39,6 +40,7 @@ def is_registered(chat_id):
         return False # COMPLETED AND WORKS
 
 def check_password(matric_number, hash):
+    logger.info(str(chat_id) + " entered check_password")
     string_to_hash = matric_number
     password = hashlib.md5(string_to_hash.encode()).hexdigest()
     return hash == password # COMPLETED AND WORKS
@@ -46,6 +48,7 @@ def check_password(matric_number, hash):
 def add_id(chat_id, matric_number):
     # add chat_id to dynamo
     # if successful, return true, else return false
+    logger.info(str(chat_id) + " entered add_id")
 
     username_list = ["alligator", "alpaca", "ant", "anteater", "antelope", "armadillo", "axolotl", "baboon", "badger", "barracuda", \
                      "bat", "bear", "beaver", "beetle", "bird", "bison", "boar", "buffalo", "bulbul", "butterfly", \
@@ -109,6 +112,8 @@ def add_id(chat_id, matric_number):
 
 def get_username(chat_id):
     # get username from chat id
+    logger.info(str(chat_id) + " entered get_username")
+
     hasher = hashlib.sha256()
     string_to_hash = str(chat_id)
     hasher.update(string_to_hash.encode('utf-8'))
@@ -126,6 +131,8 @@ def get_username(chat_id):
 
 def get_partner_id(chat_id):
     # get partner_id
+    logger.info(str(chat_id) + " entered get_partner_id")
+
     hasher = hashlib.sha256()
     string_to_hash = str(chat_id)
     hasher.update(string_to_hash.encode('utf-8'))
@@ -135,7 +142,7 @@ def get_partner_id(chat_id):
             Key = {
                 "hashid": hashid})
         item = response["Item"]
-        logger.info("User item found, partner_id returned")
+        logger.info("User item found, returning " + str(item["partner_id"]))
         return item["partner_id"]
     except Exception as e:
         logger.info("ERROR User item not found--> " + str(e))
@@ -144,6 +151,13 @@ def get_partner_id(chat_id):
 def match(chat_id):
     # tries to match this with someone
     # if successful, return partner_id, else return false
+    logger.info(str(chat_id) + " entered match")
+
+    # if user already has a partner, return partner_id
+    partner_id = get_partner_id(chat_id)
+    if partner_id != 0 and partner_id != 1 and partner_id != False:
+        return partner_id
+
     hasher = hashlib.sha256()
     string_to_hash = str(chat_id)
     hasher.update(string_to_hash.encode('utf-8'))
@@ -168,7 +182,7 @@ def match(chat_id):
                 "hashid": chat_id_hashed},
             UpdateExpression= "SET partner_id = :val1",
             ExpressionAttributeValues = {":val1": 1})
-        logger.info("Self's partner_id set to 1.")
+        logger.info("Self's partner_id set to 1, returning False.")
         return False
 
     partner_id = items[0]["chat_id"]
@@ -194,11 +208,14 @@ def match(chat_id):
         ExpressionAttributeValues = {":val1": chat_id, ":val2": chat_id})
     logger.info("Partner's partner_id updated to own chat_id.")
 
+    logger.info("Returning partner_id = " + str(partner_id))
     return partner_id # COMPLETED AND WORKS 
 
 def unmatch(chat_id):
     # unmatch user and partner
     # if successful, return old partner_id, else false
+    logger.info(str(chat_id) + " entered unmatch")
+
     hasher = hashlib.sha256()
     string_to_hash = str(chat_id)
     hasher.update(string_to_hash.encode('utf-8'))
@@ -209,16 +226,9 @@ def unmatch(chat_id):
     partner_id = response["Item"]["partner_id"]
 
     if partner_id == 0 or partner_id == 1:
-        logger.info("User is not yet matched.")
+        logger.info("User is not yet matched, returning False.")
         return False
-    
-    table.update_item(
-        Key = {
-            "hashid": chat_id_hashed},
-        UpdateExpression= "SET partner_id = :val1",
-        ExpressionAttributeValues = {":val1": 0})
-    logger.info("Self item updated to 0.")
-        
+
     hasher = hashlib.sha256()
     string_to_hash = str(partner_id)
     hasher.update(string_to_hash.encode('utf-8'))
@@ -229,11 +239,20 @@ def unmatch(chat_id):
         UpdateExpression= "SET partner_id = :val1",
         ExpressionAttributeValues = {":val1": 0})
     logger.info("Partner's item updated to 0.")
+    
+    table.update_item(
+        Key = {
+            "hashid": chat_id_hashed},
+        UpdateExpression= "SET partner_id = :val1",
+        ExpressionAttributeValues = {":val1": 0})
+    logger.info("Self item updated to 0.")
 
     return partner_id # COMPLETED AND WORKS
 
 def report(chat_id):
     # blacklist partner, return False if no partner
+    logger.info(str(chat_id) + " entered report")
+
     hasher = hashlib.sha256()
     string_to_hash = str(chat_id)
     hasher.update(string_to_hash.encode('utf-8'))
@@ -263,6 +282,8 @@ def report(chat_id):
 def is_blacklisted(chat_id):
     # return true if blacklisted, false otherwise
     # return true if there is an error
+    logger.info(str(chat_id) + " entered is_blacklisted")
+
     hasher = hashlib.sha256()
     string_to_hash = str(chat_id)
     hasher.update(string_to_hash.encode('utf-8'))

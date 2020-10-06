@@ -74,7 +74,6 @@ def webhook(event, context):
         else:
             lst = get_response(text, chat_id) # not debugging
 
-        lst = get_response(text, chat_id)
         for dic in lst:
             chat_id = dic["receiver_id"]
             text = dic["message"]
@@ -230,6 +229,7 @@ For technical concerns: @kwokyto (Ryan)"
     
     if text == "/befriend":
         partner_id = match(chat_id)
+        logger.info("partner_id at line 233 is " + str(partner_id))
         if not partner_id:
             first_response["message"] = match_fail_message
             return responses_list
