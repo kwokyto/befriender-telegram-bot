@@ -75,7 +75,7 @@ The following outlines the procedure for debugging.
 
 
 ## FAQs
-The FAQ for the bot can be found [here](tinyurl.com/loveuspbotfaq "Love USP Bot FAQs")
+The FAQ for the bot can be found [here](https://www.tinyurl.com/loveuspbotfaq "Love USP Bot FAQs")
 
 
 
