@@ -90,7 +90,7 @@ The FAQ for the bot can be found [here](https://www.tinyurl.com/loveuspbotfaq "L
 
 ### Installing
 
-```
+```lang-none
 # Open the command window in the bot file location
 
 # Install the Serverless Framework
@@ -102,7 +102,7 @@ $ npm install
 
 ### Deploying
 
-```
+```lang-none
 # Update AWS CLI in .aws/credentials
 
 # Deploy it!
