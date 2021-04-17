@@ -6,6 +6,8 @@ Befriender was created based on loneliness in university, especially for freshma
 
 The telegram bot can be accessed [here](https://telegram.me/anonchatbetabot).
 
+:warning: This bot was disabled as of 17 April 2021. Contact @kwokyto on Telegram for any enquiries.
+
 ## Features
 
 Through Befriender, you can befriend a fellow USP student and hold a private conversation with him/her.
